@@ -20,13 +20,13 @@
 body {
     background-color: var(--bg-dark);
     color: var(--text-white);
-    overflow-x: hidden;      /* Evita scroll horizontal */
-    min-height: 100vh;       /* Fuerza al cuerpo a tomar toda la altura de la pantalla */
-    display: flex;           /* Activa el modo flexible */
-    flex-direction: column;  /* Organiza verticalmente */
-    margin: 0;               /* Elimina márgenes blancos por defecto del navegador */
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;          /* ESTO ES CRUCIAL PARA LOS BORDES */
+    padding: 0;         /* ESTO TAMBIÉN */
 }
-
 .container {
     width: 90%;
     max-width: 1200px;
@@ -440,24 +440,26 @@ textarea.input-dark { resize: vertical; }
 
 
 /* --- FOOTER --- */
-/* --- FOOTER --- */
 footer {
-    background-color: black;    /* Negro puro como pediste */
+    background-color: #000000; /* Negro puro */
     padding: 50px 0;
     text-align: center;
-    border-top: 1px solid #222; /* Línea sutil de separación, puedes quitarla si prefieres todo negro */
-    width: 100%;                /* Cubre ambos lados de la pantalla */
-    margin-top: auto;           /* Esto, junto con el body flex, asegura que llegue hasta abajo */
+    width: 100vw;              /* 100vw fuerza el ancho de la ventana entera */
+    margin-left: calc(-50vw + 50%); /* Truco para forzar ancho completo aunque esté dentro de un div */
+    margin-right: calc(-50vw + 50%);
+    margin-top: auto;          /* Empuja el footer al fondo */
+    border-top: 1px solid #222;
 }
 
+/* El contenido dentro del footer */
 .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Para que no pegue el texto a los bordes en celular */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    width: 90%;                 /* Mantiene el contenido centrado pero el fondo sigue siendo ancho completo */
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .footer-links {
@@ -500,19 +502,47 @@ footer {
 }
 
 /* MEDIA QUERIES (Móvil y Tablets) */
-@media (max-width: 768px) {
-    footer {
-        padding: 40px 0;
+@media (max-width: 900px) {
+    /* Ajustes generales del Hero */
+    .hero-section { 
+        flex-direction: column-reverse; /* Texto abajo, foto arriba */
+        text-align: center; 
+        padding-top: 20px; /* Un poco de aire arriba */
+        min-height: auto;
+    }
+    
+    .hero-content { 
+        margin-top: 30px; 
+    }
+    
+    .hero-buttons, .social-icons, .stats-box { 
+        justify-content: center; 
     }
 
-    .footer-links {
-        flex-direction: column; /* Apila los enlaces uno debajo del otro */
-        gap: 15px;
+    /* --- AQUÍ ESTÁ EL ARREGLO DE LA FOTO --- */
+    .hero-image-container {
+        justify-content: center; /* Centrar la foto horizontalmente */
+        margin-bottom: 20px;
     }
 
-    .contact-info {
-        flex-direction: column; /* Apila email y teléfono */
-        gap: 15px;
+    .image-circle {
+        width: 280px;       /* Hacemos la foto más chica para celular */
+        height: 280px;
+        margin-top: 0;      /* IMPORTANTE: Quitamos el -100px que causaba el error */
+        border-width: 3px;  /* Borde más fino */
+    }
+
+    /* Ajustes para que el menú no se rompa */
+    nav ul {
+        gap: 15px;      /* Menos espacio entre links */
+        font-size: 14px; /* Letra un poco más chica */
+        flex-wrap: wrap; /* Si no entran, que bajen */
+        justify-content: center;
+    }
+    
+    header {
+        flex-direction: column; /* Logotipo arriba, menú abajo */
+        gap: 20px;
     }
 }
 

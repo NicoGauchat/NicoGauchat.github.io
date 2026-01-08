@@ -544,7 +544,6 @@ footer {
         flex-direction: column; /* Logotipo arriba, menú abajo */
         gap: 20px;
     }
-    
     /* Ajustes para tarjetas de Áreas de Enfoque en móvil */
     .services-grid {
         grid-template-columns: 1fr;
@@ -553,6 +552,39 @@ footer {
 
     .service-card {
         padding: 20px;
+    }
+
+    /* Acerca de mí: apilar y evitar que se estire en móvil */
+    .about-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .arch-image {
+        width: min(280px, 80vw);
+        height: min(360px, 100vw);
+    }
+
+    .about-text {
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    /* Portafolio: tarjetas más compactas en móvil */
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .portfolio-card img {
+        height: 180px;
+    }
+
+    .project-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
     }
 }
 

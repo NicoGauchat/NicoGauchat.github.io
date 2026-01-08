@@ -273,6 +273,38 @@
     </div>
 </div>
 
+<div class="portfolio-card">
+    
+    <div class="video-container" onclick="loadVideo(this)" data-video="xJNCIE86a-g">
+        <img src="foto/examgen.jpg" alt="ExamGen IA Cover" class="video-cover">
+        <div class="play-button">
+            <i class="fa-solid fa-play"></i>
+        </div>
+    </div>
+    
+    <div class="project-info">
+        <div class="project-header">
+            <h4>ExamGen IA - Generador de Evaluaciones</h4>
+            <span class="tech-stack">Python / FastAPI / Streamlit / Groq API</span> 
+        </div>
+        
+        <div class="desc-container">
+            <p class="project-desc collapsed" id="desc-examgen">
+                <strong>Plataforma de Estudio Inteligente</strong> basada en Inteligencia Artificial Generativa. Permite a los estudiantes subir apuntes en PDF y generar exámenes personalizados automáticamente.
+                <br><br>
+                Desarrollada con una arquitectura desacoplada: un backend robusto en <strong>FastAPI</strong> que orquesta la lectura de documentos y la integración con <strong>LLMs (Llama 3 vía Groq)</strong>, y un frontend interactivo en <strong>Streamlit</strong>. El sistema implementa lógica de <em>Prompt Engineering</em> avanzada para crear preguntas de opción múltiple, verdadero/falso y asociación, incluyendo <strong>corrección automática</strong> y feedback en tiempo real.
+            </p>
+            <button class="read-more-btn" onclick="toggleText('desc-examgen', this)">Leer más</button>
+        </div>
+
+        <div class="project-links">
+            <a href="https://github.com/NicoGauchat/ExamGen-IA" target="_blank" class="github-btn">
+                <i class="fa-brands fa-github"></i> Ver Código Fuente
+            </a>
+        </div>
+    </div>
+</div>
+
 <div class="portfolio-card tfi-card">
     
     <div class="video-container" onclick="loadVideo(this)" data-video="xS5CGJW0yYo">

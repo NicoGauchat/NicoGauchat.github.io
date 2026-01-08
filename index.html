@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicolás Gauchat - Portafolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="container">
+        <div class="logo">NG</div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active">Inicio</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#about">Acerca de mi</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#contact">Contactame</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="btn btn-orange nav-btn">Contratame</a>
+    </header>
+
+    <section id="home" class="hero-section container">
+        <div class="hero-content">
+            <h3 class="greeting">Hola! soy</h3>
+            <h1 class="name">Nicolás Gauchat</h1>
+            <h2 class="job-title">Estudiante de Ing. en Informática</h2>
+            
+            <div class="social-icons">
+    <a href="https://www.instagram.com/gauchatnico/" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/nicol%C3%A1s-gauchat-39b9a1272/" target="_blank">
+        <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+    <a href="https://github.com/NicoGauchat" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+</div>
+
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-orange">Contactarme</a>
+                <a href="#" class="btn btn-outline">Descargar CV</a>
+            </div>
+
+            <div class="stats-box">
+    <div class="stat-item">
+        <h4>4º</h4>
+        <p>Año Cursando</p>
+    </div>
+    
+    <div class="stat-divider"></div>
+    
+    <div class="stat-item">
+        <h4>5+</h4>
+        <p>Proyectos</p>
+    </div>
+    
+    <div class="stat-divider"></div>
+    
+    <div class="stat-item">
+        <h4>10+</h4>
+        <p>Tecnologías</p>
+    </div>
+</div>
+        </div>
+
+        <div class="hero-image-container">
+            <div class="image-circle">
+                <img src="foto/Yo.jpeg" alt="Profile">
+            </div>
+        </div>
+    </section>
+
+   <section id="services" class="services-section container">
+    <div class="section-header">
+        <h2>Áreas de Enfoque</h2>
+        <p>Especialización técnica orientada a resultados y calidad de software.</p>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="icon"><i class="fa-solid fa-server"></i></div>
+            <h3>Desarrollo Backend</h3>
+            <p>Construcción de lógica de servidor eficiente utilizando <strong>C# (.NET)</strong>, <strong>Java</strong> y <strong>Go</strong>. Implementación de patrones de diseño y arquitecturas limpias.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon"><i class="fa-solid fa-network-wired"></i></div>
+            <h3>APIs RESTful</h3>
+            <p>Diseño y desarrollo de <strong>APIs</strong> escalables para integrar sistemas. Experiencia conectando servicios y asegurando la integridad de los datos.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon"><i class="fa-solid fa-database"></i></div>
+            <h3>Gestión de Datos</h3>
+            <p>Manejo de bases de datos relacionales (<strong>SQL</strong>) y conocimientos en bases no relacionales. Optimización de consultas y modelado de datos.</p>
+        </div>
+    </div>
+</section>
+
+    <section id="about" class="about-section container">
+        <div class="section-header">
+            <h2>Acerca de mi</h2>
+            <p>Desarrollador de software</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-image-wrapper">
+                <div class="arch-image">
+                    <img src="foto/yo.jpeg" alt="About Profile">
+                </div>
+            </div>
+
+         <div class="about-text">
+    <h3>Ingeniero en Formación & Desarrollador</h3>
+    
+    <p>
+        Soy estudiante de 4º año de <strong>Ingeniería Informática</strong> en la Universidad Catolica de Santiago del Estero (sede Rafaela, Santa Fe), apasionado por transformar problemas complejos en soluciones de software eficientes. Me defino como un profesional <strong>autodidacta, disciplinado y proactivo</strong>, con una gran capacidad de <strong>adaptación y trabajo en equipo</strong>.
+    </p>
+    
+    <p>
+        Cuento con una sólida base académica orientada al <strong>Desarrollo Backend</strong> y la ciencia de datos. Aunque estoy iniciando mi trayectoria profesional, me motiva el aprendizaje continuo en el dinámico mundo de la tecnología. Busco oportunidades para aplicar mis habilidades en proyectos desafiantes, aportar valor desde el primer día y seguir creciendo como profesional.
+    </p>
+    
+    <br>
+    <a href="./cv-nicolas-gauchat.pdf" class="btn btn-orange" download>Descargar CV</a>
+</div>
+        </div>
+
+        <div class="skills-row">
+    <div class="skill-circle">
+        <div class="progress" style="--i:90; --clr:#FF5722;">
+            <h3>90<span>%</span></h3>
+            <div class="skill-icon"><i class="fa-brands fa-microsoft"></i></div>
+        </div>
+        <p>C# / .NET</p>
+    </div>
+
+    <div class="skill-circle">
+        <div class="progress" style="--i:90; --clr:#FF5722;">
+            <h3>90<span>%</span></h3>
+            <div class="skill-icon"><i class="fa-brands fa-java"></i></div>
+        </div>
+        <p>Java</p>
+    </div>
+
+    <div class="skill-circle">
+        <div class="progress" style="--i:85; --clr:#FF5722;">
+            <h3>90<span>%</span></h3>
+            <div class="skill-icon"><i class="fa-brands fa-golang"></i></div>
+        </div>
+        <p>Go</p>
+    </div>
+
+    <div class="skill-circle">
+        <div class="progress" style="--i:85; --clr:#FF5722;">
+            <h3>85<span>%</span></h3>
+            <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+        </div>
+        <p>SQL</p>
+    </div>
+
+    <div class="skill-circle">
+        <div class="progress" style="--i:75; --clr:#FF5722;">
+            <h3>75<span>%</span></h3>
+            <div class="skill-icon"><i class="fa-solid fa-leaf"></i></div>
+        </div>
+        <p>Spring Boot</p>
+    </div>
+
+    <div class="skill-circle">
+        <div class="progress" style="--i:70; --clr:#FF5722;">
+            <h3>70<span>%</span></h3>
+            <div class="skill-icon"><i class="fa-brands fa-react"></i></div>
+        </div>
+        <p>React</p>
+    </div>
+</div>
+    </section>
+
+    <section id="portfolio" class="portfolio-section container">
+        <section id="portfolio" class="portfolio-section container">
+    <div class="section-header">
+        <h2>Portafolio</h2>
+        
+        <p style="max-width: 500px; margin: 0 auto; color: var(--text-gray); line-height: 1.6;">
+            Una selección de mis trabajos más destacados, abarcando desde 
+            <strong>Sistemas de Gestión Empresarial</strong> hasta 
+            <strong>Desarrollo Full Stack</strong> y Algoritmia.
+        </p>
+    </div>
+
+    <div class="portfolio-grid">
+        </div>
+
+
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+    
+    <div class="video-container" onclick="loadVideo(this)" data-video="">
+        <img src="img/gym-admin-capture.jpg" alt="Admin Gimnasio Cover" class="video-cover">
+        <div class="play-button" style="display: none;">
+            <i class="fa-solid fa-play"></i>
+        </div>
+    </div>
+    
+    <div class="project-info">
+        <div class="project-header">
+            <h4>Sistema de Administración SaaS</h4>
+            <span class="tech-stack">Java / Go / React / SQL</span> 
+        </div>
+        
+        <div class="desc-container">
+            <p class="project-desc collapsed" id="desc-admin">
+                <strong>Plataforma SaaS Full Stack</strong> para la gestión integral y financiera de gimnasios. Arquitectura híbrida utilizando Java en el backend y una integración de Go con React para módulos dinámicos.
+                <br><br>
+                El sistema centraliza la operación del negocio: gestión de clientes con <strong>búsqueda avanzada</strong>, control de asistencias en tiempo real, y un módulo financiero robusto con <strong>cierre de caja</strong> y exportación a Excel. Incluye dashboards interactivos con métricas de ingresos y horas pico, autenticación segura con JWT y manejo de integridad de datos en <strong>PostgreSQL</strong>.
+            </p>
+            <button class="read-more-btn" onclick="toggleText('desc-admin', this)">Leer más</button>
+        </div>
+
+        <div class="project-links">
+            <div class="private-btn">
+                <i class="fa-solid fa-lock"></i> Código Privado (SaaS)
+            </div>
+            
+            </div>
+    </div>
+</div>
+<div class="portfolio-card">
+    
+    <div class="video-container" onclick="loadVideo(this)" data-video="KmODUxIcIug">
+        <img src="foto/tp3.png" alt="Gym App Cover" class="video-cover">
+        <div class="play-button">
+            <i class="fa-solid fa-play"></i>
+        </div>
+    </div>
+    
+    <div class="project-info">
+        <div class="project-header">
+            <h4>Gestor de Rutinas Fitness</h4>
+            <span class="tech-stack">Go (Gin) / MongoDB / JWT</span> 
+        </div>
+        
+        <div class="desc-container">
+            <p class="project-desc collapsed" id="desc-gym">
+                <strong>Aplicación Web Full Stack.</strong> Plataforma para la gestión personalizada de entrenamientos y seguimiento de progreso.
+                <br><br>
+                Backend desarrollado en <strong>Go</strong> (framework Gin) con arquitectura limpia. Implementa seguridad robusta con autenticación <strong>JWT</strong> y encriptación bcrypt. Cuenta con gestión de roles (Admin/User), catálogo dinámico de ejercicios y persistencia de datos en <strong>MongoDB</strong>. Incluye renderizado de vistas en servidor y diseño responsive.
+            </p>
+            <button class="read-more-btn" onclick="toggleText('desc-gym', this)">Leer más</button>
+        </div>
+
+        <div class="project-links">
+            <a href="https://github.com/juanpoggi12/JGNSolutions" target="_blank" class="github-btn">
+                <i class="fa-brands fa-github"></i> Ver Código Fuente
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="portfolio-card tfi-card">
+    
+    <div class="video-container" onclick="loadVideo(this)" data-video="xS5CGJW0yYo">
+        <img src="foto/tp2.png" alt="Sistema Logística Cover" class="video-cover">
+        <div class="play-button">
+            <i class="fa-solid fa-play"></i>
+        </div>
+    </div>
+    
+    <div class="project-info">
+        <div class="project-header">
+            <h4>Sistema de Gestión Logística</h4>
+            <span class="tech-stack">C# .NET / Arquitectura en Capas / NUnit</span> 
+        </div>
+        
+        <div class="desc-container">
+            <p class="project-desc collapsed" id="desc-tfi">
+                <strong>Trabajo Final Integrador.</strong> Aplicación Full Stack diseñada para automatizar el ciclo comercial y logístico de una distribuidora.
+                <br><br>
+                Implementa una <strong>arquitectura en capas</strong> (API, Lógica, Datos) con persistencia en JSON. Destaca por su <strong>algoritmo de optimización</strong> que asigna pedidos a vehículos considerando volumen y autonomía, utilizando la fórmula de Haversine para cálculo de distancias reales y geolocalización. Incluye validaciones de stock, descuentos dinámicos y cobertura de <strong>Unit Testing</strong>.
+            </p>
+            <button class="read-more-btn" onclick="toggleText('desc-tfi', this)">Leer más</button>
+        </div>
+
+        <div class="project-links">
+            <a href="https://github.com/juanpoggi12/2024-Prog1-TI-Gauchat-Mallet-Poggi" target="_blank" class="github-btn">
+                <i class="fa-brands fa-github"></i> Ver Código Fuente
+            </a>
+        </div>
+    </div>
+</div>
+
+          <div class="portfolio-card snake-card">
+    <div class="video-container" onclick="loadVideo(this)" data-video="2dMqQzveN7o">
+        <img src="foto/snakegame.jpg" alt="Snake Game Cover" class="video-cover">
+        
+        <div class="play-button">
+            <i class="fa-solid fa-play"></i>
+        </div>
+    </div>
+    
+    <div class="project-info">
+        <div class="project-header">
+            <h4>Snake Game (Arcade)</h4>
+            <span class="tech-stack">Go (Golang)</span> 
+        </div>
+        
+        <div class="desc-container">
+            <p class="project-desc collapsed" id="desc-snake">
+Este proyecto consiste en la recreación del clásico juego arcade "Snake", desarrollado como parte de una asignatura universitaria de programación. El jugador controla una serpiente que se desplaza por la pantalla recolectando alimentos para crecer. El objetivo es alcanzar la mayor longitud posible sin colisionar con los bordes o con su propio cuerpo.                <br><br>
+Trabajé en equipo y me encargué de implementar funcionalidades personalizadas, adaptar parte de la lógica del juego, y realizar pruebas de funcionamiento.            </p>
+            <button class="read-more-btn" onclick="toggleText('desc-snake', this)">Leer más</button>
+        </div>
+
+        <div class="project-links">
+            <a href="https://github.com/NicoGauchat/JuegoDeLaSerpiente" target="_blank" class="github-btn">
+                <i class="fa-brands fa-github"></i> Ver Código Fuente
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+function loadVideo(element) {
+    var videoId = element.getAttribute('data-video');
+    element.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+}
+
+function toggleText(id, btn) {
+        var textElement = document.getElementById(id);
+        
+        // Alternar la clase 'collapsed' y 'expanded'
+        if (textElement.classList.contains('collapsed')) {
+            textElement.classList.remove('collapsed');
+            textElement.classList.add('expanded');
+            btn.innerText = "Leer menos"; // Cambia el texto del botón
+        } else {
+            textElement.classList.remove('expanded');
+            textElement.classList.add('collapsed');
+            btn.innerText = "Leer más";
+        }
+    }
+</script>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section container">
+        <div class="section-header">
+            <h2>Contactame</h2>
+            <p>Estoy disponible para discutir nuevas oportunidades laborales y colaboraciones.</p>
+        </div>
+
+        <form class="contact-form">
+            <div class="form-row">
+                <input type="text" placeholder="Nombre" class="input-dark">
+                <input type="email" placeholder="Email" class="input-dark">
+            </div>
+            <div class="form-row">
+                <input type="text" placeholder="Numero de telefono" class="input-dark">
+                <select class="input-dark">
+                    <option>Service Of Interest</option>
+                    <option>Diseño web</option>
+                    <option>App Design</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <input type="text" placeholder="Duracion" class="input-dark">
+            </div>
+            <div class="form-row">
+                <textarea placeholder="Detalles del proyecto..." rows="6" class="input-dark"></textarea>
+            </div>
+            <div class="form-footer">
+                <button type="submit" class="btn btn-outline">Enviar</button>
+            </div>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="logo">NG</div>
+            
+            <ul class="footer-links">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#about">Acerca de mi</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#contact">Contactame</a></li>
+            </ul>
+
+           <div class="social-icons footer-social">
+    <a href="https://www.instagram.com/gauchatnico/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/nicol%C3%A1s-gauchat-39b9a1272/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://github.com/NicoGauchat" target="_blank"><i class="fa-brands fa-github"></i></a>
+</div>
+
+            <div class="contact-info">
+                <span><i class="fa-regular fa-envelope"></i> nicogauchat2@gmail.com</span>
+                <span><i class="fa-solid fa-phone"></i> +54 15 3492596566</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

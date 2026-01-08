@@ -20,10 +20,11 @@
 body {
     background-color: var(--bg-dark);
     color: var(--text-white);
-    overflow-x: hidden;
-    min-height: 100vh;      /* Ocupa al menos toda la altura de la pantalla */
-    display: flex;          /* Activa el modelo flexible */
-    flex-direction: column; /* Organiza todo en columna vertical */
+    overflow-x: hidden;      /* Evita scroll horizontal */
+    min-height: 100vh;       /* Fuerza al cuerpo a tomar toda la altura de la pantalla */
+    display: flex;           /* Activa el modo flexible */
+    flex-direction: column;  /* Organiza verticalmente */
+    margin: 0;               /* Elimina márgenes blancos por defecto del navegador */
 }
 
 .container {
@@ -439,14 +440,14 @@ textarea.input-dark { resize: vertical; }
 
 
 /* --- FOOTER --- */
+/* --- FOOTER --- */
 footer {
-    background: #080808;
+    background-color: black;    /* Negro puro como pediste */
     padding: 50px 0;
     text-align: center;
-    border-top: 1px solid #222;
-    /* Cambios clave: */
-    width: 100%;        /* Forza el ancho total */
-    margin-top: auto;   /* Empuja el footer al fondo si sobra espacio */
+    border-top: 1px solid #222; /* Línea sutil de separación, puedes quitarla si prefieres todo negro */
+    width: 100%;                /* Cubre ambos lados de la pantalla */
+    margin-top: auto;           /* Esto, junto con el body flex, asegura que llegue hasta abajo */
 }
 
 .footer-container {
@@ -454,6 +455,9 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 25px;
+    width: 90%;                 /* Mantiene el contenido centrado pero el fondo sigue siendo ancho completo */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .footer-links {
@@ -461,38 +465,55 @@ footer {
     gap: 30px;
     list-style: none;
     padding: 0;
+    flex-wrap: wrap;            /* Permite que los enlaces bajen si no hay espacio */
+    justify-content: center;
 }
 
 .footer-links a {
     color: var(--text-gray);
     text-decoration: none;
     font-size: 14px;
+    transition: color 0.3s ease;
 }
 
-.footer-links a:hover { color: var(--primary); }
+.footer-links a:hover { 
+    color: var(--primary); 
+}
 
 .contact-info {
     display: flex;
     gap: 30px;
     color: var(--text-gray);
     font-size: 14px;
+    flex-wrap: wrap;            /* Permite que el email y teléfono se acomoden */
+    justify-content: center;
 }
 
-.contact-info i { color: var(--primary); margin-right: 5px; }
-
-/* MEDIA QUERIES (Móvil) */
-@media (max-width: 900px) {
-    .services-grid, .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero-section { flex-direction: column-reverse; text-align: center; }
-    .hero-content { margin-top: 40px; }
-    .hero-buttons, .social-icons, .stats-box { justify-content: center; }
-    .about-content { flex-direction: column; text-align: center; }
+.contact-info span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-@media (max-width: 600px) {
-    .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
-    .form-row { flex-direction: column; }
-    .footer-links, .contact-info { flex-direction: column; gap: 15px; }
+.contact-info i { 
+    color: var(--primary); 
+}
+
+/* MEDIA QUERIES (Móvil y Tablets) */
+@media (max-width: 768px) {
+    footer {
+        padding: 40px 0;
+    }
+
+    .footer-links {
+        flex-direction: column; /* Apila los enlaces uno debajo del otro */
+        gap: 15px;
+    }
+
+    .contact-info {
+        flex-direction: column; /* Apila email y teléfono */
+        gap: 15px;
+    }
 }
 
 /* --- ESTILOS TARJETA DE VIDEO MEJORADA --- */

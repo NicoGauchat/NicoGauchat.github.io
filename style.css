@@ -395,50 +395,6 @@ nav a:hover, nav a.active {
 .project-info span { font-size: 12px; color: var(--text-gray); }
 
 
-/* --- CONTACT ME --- */
-.contact-section { padding: 80px 0; }
-
-.contact-form {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #0f0f0f;
-    padding: 40px;
-    border-radius: 20px;
-}
-
-.form-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.input-dark {
-    width: 100%;
-    background: var(--input-bg);
-    border: 1px solid transparent;
-    padding: 15px 20px;
-    border-radius: 8px;
-    color: white;
-    font-size: 14px;
-    outline: none;
-}
-
-.input-dark:focus {
-    border-color: var(--primary);
-}
-
-textarea.input-dark { resize: vertical; }
-
-.form-footer {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.form-footer .btn-outline {
-    padding: 12px 50px;
-}
-
-
 /* --- FOOTER --- */
 footer {
     background-color: #000000; /* Negro puro */
@@ -543,6 +499,49 @@ footer {
     header {
         flex-direction: column; /* Logotipo arriba, menú abajo */
         gap: 20px;
+    }
+
+    /* Ajustes para tarjetas de Áreas de Enfoque en móvil */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
+
+    /* Acerca de mí: apilar y evitar que se estire en móvil */
+    .about-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .arch-image {
+        width: min(280px, 80vw);
+        height: min(360px, 100vw);
+    }
+
+    .about-text {
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    /* Portafolio: tarjetas más compactas en móvil */
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .portfolio-card img {
+        height: 180px;
+    }
+
+    .project-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
     }
 }
 

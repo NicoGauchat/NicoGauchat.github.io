@@ -544,6 +544,16 @@ footer {
         flex-direction: column; /* Logotipo arriba, menú abajo */
         gap: 20px;
     }
+    
+    /* Ajustes para tarjetas de Áreas de Enfoque en móvil */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
 }
 
 /* --- ESTILOS TARJETA DE VIDEO MEJORADA --- */

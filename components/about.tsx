@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Server, Network, Database } from "lucide-react";
 
+
 const skills = [
   {
     icon: Server,

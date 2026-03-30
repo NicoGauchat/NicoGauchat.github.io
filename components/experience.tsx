@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { ReactElement } from "react";
 
 const experiences = [
   {
@@ -61,7 +62,7 @@ const technologies: Technology[] = [
 
 // Icon components
 function TechIcon({ type, color }: { type: string; color: string }) {
-  const icons: Record<string, JSX.Element> = {
+  const icons: Record<string, ReactElement> = {
     csharp: (
       <svg viewBox="0 0 24 24" className="w-5 h-5" fill={color}>
         <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zM9.426 7.12a5.55 5.55 0 0 1 .79.044 5.55 5.55 0 0 1 .774.136l-.19 1.054a4.29 4.29 0 0 0-.57-.097 4.29 4.29 0 0 0-.59-.037A3.5 3.5 0 0 0 7 9.154 3.5 3.5 0 0 0 6.09 12 3.5 3.5 0 0 0 7 14.846 3.5 3.5 0 0 0 9.64 15.78a4.29 4.29 0 0 0 .59-.037 4.29 4.29 0 0 0 .57-.097l.19 1.054a5.55 5.55 0 0 1-.774.136 5.55 5.55 0 0 1-.79.044A4.72 4.72 0 0 1 5.7 15.48 4.72 4.72 0 0 1 4.8 12a4.72 4.72 0 0 1 .9-3.48 4.72 4.72 0 0 1 3.726-1.4zM15.5 9.5h1v1h1v1h-1v1h-1v-1h-1v-1h1zM18.5 9.5h1v1h1v1h-1v1h-1v-1h-1v-1h1z"/>
@@ -98,7 +99,7 @@ function TechIcon({ type, color }: { type: string; color: string }) {
 }
 
 function ExperienceIcon({ type }: { type: string }) {
-  const icons: Record<string, JSX.Element> = {
+  const icons: Record<string, ReactElement> = {
     graduation: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />

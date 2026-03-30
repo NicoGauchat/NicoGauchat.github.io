@@ -52,7 +52,7 @@ export function Contact() {
       }
 
       form.reset();
-      setFeedbackMessage("Mensaje enviado correctamente por Formspree.");
+      setFeedbackMessage("Mensaje enviado correctamente.");
     } catch {
       setFeedbackMessage(
         "No se pudo enviar el mensaje. Revisa la configuracion de Formspree e intenta de nuevo."
@@ -213,9 +213,6 @@ export function Contact() {
                 {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
               </button>
 
-              <p className="mt-3 text-sm text-muted-foreground">
-                Formspree plan gratis: hasta 50 envios por mes.
-              </p>
 
               {feedbackMessage && (
                 <p className="mt-2 text-sm text-accent">

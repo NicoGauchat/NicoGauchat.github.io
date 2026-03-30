@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     "React",
   ],
   authors: [{ name: "Nicolas Gauchat" }],
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export const viewport: Viewport = {

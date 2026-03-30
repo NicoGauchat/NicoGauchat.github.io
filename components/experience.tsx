@@ -5,7 +5,7 @@ import type { ReactElement } from "react";
 
 const experiences = [
   {
-    period: "2021 - Presente",
+    period: "2023 - Presente",
     title: "Estudiante de Ingenieria Informatica",
     company: "UCSE - Universidad Catolica de Santiago del Estero",
     description:

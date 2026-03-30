@@ -28,7 +28,7 @@ const projects: Project[] = [
     title: "TrackIt-One",
     status: "En preparacion",
     description:
-      "Aplicacion de organizacion academica pensada para estudiantes que quieren administrar mejor su tiempo. Integra tareas, materias, calendario, seguimiento de entregas, estadisticas y espacios de concentracion en una sola experiencia (React, Next.js, PostgreSQL y Go).",
+      "Aplicacion de organizacion academica pensada para estudiantes que quieren administrar mejor su tiempo. Integra tareas, materias, calendario, seguimiento de entregas, estadisticas y espacios de concentracion en una sola experiencia.",
     images: [
       "/foto/trackit-one/inicio.png",
       "/foto/trackit-one/tareas.png",
@@ -46,7 +46,7 @@ const projects: Project[] = [
     title: "Gym Node",
     status: "En desarrollo",
     description:
-      "Parte de un emprendimiento desarrollado junto a otros dos socios. Sistema de gestion para gimnasios disenado para centralizar la operacion diaria en una sola plataforma. Permite administrar clientes, asistencias, cuotas, precios e informacion administrativa con una estructura clara, moderna y preparada para crecer (Java, Spring Boot, PostgreSQL, React, Docker y JWT).",
+      "Parte de un emprendimiento desarrollado junto a otros dos socios. Sistema de gestion para gimnasios disenado para centralizar la operacion diaria en una sola plataforma. Permite administrar clientes, asistencias, cuotas, precios e informacion administrativa con una estructura clara, moderna y preparada para crecer.",
     images: [
       "/foto/gym-node/panel-general.png",
       "/foto/gym-node/clientes.png",
@@ -64,8 +64,20 @@ const projects: Project[] = [
     title: "Gestor de Rutinas",
     status: "Completado",
     description:
-      "Aplicacion Web Full Stack para gestion personalizada de entrenamientos. Backend en Go (Gin) con arquitectura limpia, autenticacion JWT, roles Admin/User y persistencia en MongoDB.",
-    images: ["/foto/tp3.png"],
+      "Trabajo final de la materia Programacion II (3er año). Aplicacion Web Full Stack para gestion personalizada de entrenamientos. Backend en Go (Gin) con arquitectura limpia, autenticacion JWT, roles Admin/User y persistencia en MongoDB.",
+    images: [
+      "/foto/tp3/inicio de sesion.png",
+      "/foto/tp3/inicio.png",
+      "/foto/tp3/rutinas.png",
+      "/foto/tp3/creadorRutina.png",
+      "/foto/tp3/entrenamiento.png",
+      "/foto/tp3/estadisticas.png",
+      "/foto/tp3/configuracion.png",
+      "/foto/tp3/anadirejer.png",
+      "/foto/tp3/paneladmin.png",
+      "/foto/tp3/paneladmin2.png",
+      "/foto/tp3/tp3.png",
+    ],
     stack: ["Go", "Gin", "MongoDB", "JWT"],
     github: "https://github.com/juanpoggi12/JGNSolutions",
     demo: null,
@@ -73,7 +85,7 @@ const projects: Project[] = [
   },
   {
     title: "ExamGenIA",
-    status: "En preparacion",
+    status: "Completado",
     description:
       "Programa en Python donde subis un archivo y te genera preguntas de verdadero o falso, unir, respuesta corta y otros formatos automaticamente. Utiliza Groq para procesar el contenido y construir las evaluaciones.",
     images: [
@@ -490,15 +502,15 @@ function EmptyProjectMedia({ title }: { title: string }) {
 }
 
 function StatusBadge({ status }: { status: string }) {
-  const isHighlighted = status === "En desarrollo" || status === "En preparacion";
+  const stylesByStatus: Record<string, string> = {
+    "En preparacion": "bg-sky-500/10 text-sky-300 border-sky-500/30",
+    "En desarrollo": "bg-amber-500/10 text-amber-300 border-amber-500/30",
+    Completado: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+  };
 
   return (
     <span
-      className={`px-3 py-1 text-xs font-medium rounded-md border ${
-        isHighlighted
-          ? "bg-accent/10 text-accent border-accent/30"
-          : "bg-muted/50 text-muted-foreground border-border"
-      }`}
+      className={`px-3 py-1 text-xs font-medium rounded-md border ${stylesByStatus[status] ?? "bg-muted/50 text-muted-foreground border-border"}`}
     >
       {status}
     </span>

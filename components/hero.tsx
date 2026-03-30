@@ -137,7 +137,7 @@ export function Hero() {
                       4
                     </p>
                     <p className="text-muted-foreground text-sm mt-2">
-                      Ano Cursando
+                      Año Cursando
                     </p>
                   </div>
                   <div className="border-x border-border px-4">

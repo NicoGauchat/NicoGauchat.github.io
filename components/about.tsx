@@ -62,7 +62,7 @@ export function About() {
               {/* Floating badge */}
               <div className="absolute -right-8 bottom-12 bg-card border border-border rounded-xl p-4 shadow-xl">
                 <p className="text-accent font-serif text-2xl font-bold">4to</p>
-                <p className="text-muted-foreground text-xs">Ano Ing.</p>
+                <p className="text-muted-foreground text-xs">Año Ing.</p>
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ export function About() {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Soy estudiante de 4to ano de{" "}
+                Soy estudiante de 4to año de{" "}
                 <span className="text-foreground font-medium">
                   Ingenieria Informatica
                 </span>{" "}

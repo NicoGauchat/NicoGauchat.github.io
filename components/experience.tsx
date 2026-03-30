@@ -9,25 +9,25 @@ const experiences = [
     title: "Estudiante de Ingenieria Informatica",
     company: "UCSE - Universidad Catolica de Santiago del Estero",
     description:
-      "Cursando el 4to ano de la carrera con enfoque en desarrollo backend, bases de datos y arquitectura de software. Participacion activa en proyectos academicos y grupales.",
+      "Cursando el 4to año de la carrera con enfoque en desarrollo backend, bases de datos y arquitectura de software. Participacion activa en proyectos academicos y grupales.",
     skills: ["Algoritmos", "Estructuras de Datos", "POO", "Bases de Datos"],
     icon: "graduation",
   },
   {
-    period: "2024",
+    period: "2024 - Actualidad",
     title: "Desarrollador Full Stack",
     company: "Proyecto SaaS - Sistema de Administracion",
     description:
-      "Desarrollo de una plataforma SaaS para la gestion integral de gimnasios. Arquitectura hibrida con Java/Go en backend y React para modulos dinamicos.",
+      "Desarrollo continuo de una plataforma SaaS para la gestion integral de gimnasios. Arquitectura hibrida con Java/Go en backend y React para modulos dinamicos.",
     skills: ["Java", "Go", "React", "PostgreSQL", "JWT"],
     icon: "code",
   },
   {
-    period: "2023 - 2024",
+    period: "2023 - Actualidad",
     title: "Proyectos Academicos",
     company: "Trabajos Practicos Integradores",
     description:
-      "Desarrollo de multiples proyectos academicos incluyendo sistemas de gestion logistica, aplicaciones fitness y juegos arcade, aplicando metodologias agiles y buenas practicas.",
+      "Desarrollo continuo de multiples proyectos academicos incluyendo sistemas de gestion logistica, aplicaciones fitness y juegos arcade, aplicando metodologias agiles y buenas practicas.",
     skills: ["C# .NET", "Go", "MongoDB", "Unit Testing"],
     icon: "folder",
   },
@@ -52,12 +52,12 @@ const levelConfig: Record<SkillLevel, { bars: number; label: string }> = {
 };
 
 const technologies: Technology[] = [
-  { name: "C# .NET", level: "Avanzado", yearsExp: "3+", projects: 5, icon: "csharp", color: "#9B4F96" },
-  { name: "Java", level: "Avanzado", yearsExp: "3+", projects: 4, icon: "java", color: "#f89820" },
-  { name: "Go", level: "Avanzado", yearsExp: "2+", projects: 3, icon: "go", color: "#00ADD8" },
-  { name: "SQL", level: "Avanzado", yearsExp: "3+", projects: 6, icon: "database", color: "#336791" },
-  { name: "Spring Boot", level: "Intermedio", yearsExp: "1+", projects: 2, icon: "spring", color: "#6DB33F" },
-  { name: "React", level: "Intermedio", yearsExp: "1+", projects: 2, icon: "react", color: "#61DAFB" },
+  { name: "C# .NET", level: "Avanzado", yearsExp: "+3", projects: 5, icon: "csharp", color: "#9B4F96" },
+  { name: "Java", level: "Avanzado", yearsExp: "+3", projects: 4, icon: "java", color: "#f89820" },
+  { name: "Go", level: "Avanzado", yearsExp: "+2", projects: 3, icon: "go", color: "#00ADD8" },
+  { name: "SQL", level: "Avanzado", yearsExp: "+3", projects: 6, icon: "database", color: "#336791" },
+  { name: "Spring Boot", level: "Intermedio", yearsExp: "+1", projects: 2, icon: "spring", color: "#6DB33F" },
+  { name: "React", level: "Intermedio", yearsExp: "+1", projects: 2, icon: "react", color: "#61DAFB" },
 ];
 
 // Icon components
@@ -325,7 +325,7 @@ export function Experience() {
                                 <svg className="w-3 h-3 text-accent/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span className="text-foreground font-medium">{tech.yearsExp}</span> anos
+                                <span className="text-foreground font-medium">{tech.yearsExp}</span> años
                               </span>
                             )}
                             {tech.projects && (

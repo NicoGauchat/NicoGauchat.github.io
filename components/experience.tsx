@@ -16,9 +16,9 @@ const experiences = [
   {
     period: "2025 - Actualidad",
     title: "Desarrollador Full Stack",
-    company: "Proyecto SaaS - Sistema de Administracion",
+    company: "Emprendimiento SaaS - Desarollos de software",
     description:
-      "Desarrollo continuo de una plataforma SaaS para la gestion integral de gimnasios. Arquitectura hibrida con Java/Go en backend y React para modulos dinamicos.",
+      "Desarrollo continuos de plataformas SaaS. Arquitecturas hibridas con Java/Go en backend y React para modulos dinamicos.",
     skills: ["Java", "Go", "React", "PostgreSQL", "JWT"],
     icon: "code",
   },

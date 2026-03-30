@@ -46,7 +46,7 @@ const projects: Project[] = [
     title: "Gym Node",
     status: "En desarrollo",
     description:
-      "Parte de un emprendimiento desarrollado junto a otros dos socios. Sistema de gestion para gimnasios disenado para centralizar la operacion diaria en una sola plataforma. Permite administrar clientes, asistencias, cuotas, precios e informacion administrativa con una estructura clara, moderna y preparada para crecer.",
+      "Parte de un emprendimiento desarrollado junto a otros dos socios. Sistema de gestion para gimnasios diseñado para centralizar la operacion diaria en una sola plataforma. Permite administrar clientes, asistencias, cuotas, precios e informacion administrativa con una estructura clara, moderna y preparada para crecer.",
     images: [
       "/foto/gym-node/panel-general.png",
       "/foto/gym-node/clientes.png",

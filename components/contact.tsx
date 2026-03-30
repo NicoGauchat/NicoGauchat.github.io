@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Check } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mjgpwpvg";
 
 const contactInfo = [
   {
     icon: Mail,
     label: "Email",
     value: "nicogauchat2@gmail.com",
-    href: "mailto:nicogauchat2@gmail.com",
+    href: null,
   },
   {
     icon: Phone,
@@ -25,17 +27,39 @@ const contactInfo = [
 ];
 
 export function Contact() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsLoading(false);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    setIsSubmitting(true);
+    setFeedbackMessage("");
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("No se pudo enviar el formulario.");
+      }
+
+      form.reset();
+      setFeedbackMessage("Mensaje enviado correctamente por Formspree.");
+    } catch {
+      setFeedbackMessage(
+        "No se pudo enviar el mensaje. Revisa la configuracion de Formspree e intenta de nuevo."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -182,26 +206,22 @@ export function Contact() {
 
               <button
                 type="submit"
-                disabled={isLoading || isSubmitted}
-                className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-accent-foreground font-medium rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-accent/25 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                disabled={isSubmitting}
+                className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-accent-foreground font-medium rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-accent/25 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
               >
-                {isSubmitted ? (
-                  <>
-                    <Check className="w-5 h-5" />
-                    Mensaje Enviado
-                  </>
-                ) : isLoading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-accent-foreground/30 border-t-accent-foreground rounded-full animate-spin" />
-                    Enviando...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    Enviar Mensaje
-                  </>
-                )}
+                <Send className="w-5 h-5" />
+                {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
               </button>
+
+              <p className="mt-3 text-sm text-muted-foreground">
+                Formspree plan gratis: hasta 50 envios por mes.
+              </p>
+
+              {feedbackMessage && (
+                <p className="mt-2 text-sm text-accent">
+                  {feedbackMessage}
+                </p>
+              )}
             </form>
           </div>
         </div>

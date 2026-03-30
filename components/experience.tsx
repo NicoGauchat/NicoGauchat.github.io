@@ -360,7 +360,7 @@ export function Experience() {
                     Desarrollo Backend & Arquitecturas Escalables
                   </p>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    Profundizando en patrones de diseno, microservicios y DevOps.
+                    Profundizando en patrones de diseño, microservicios y DevOps.
                   </p>
 
                   {/* Tags */}

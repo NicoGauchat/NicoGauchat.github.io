@@ -86,7 +86,7 @@ export function Footer() {
             {currentYear} Nicolas Gauchat. Todos los derechos reservados.
           </p>
           <p className="text-sm text-muted-foreground">
-            Disenado y desarrollado con pasion
+            Diseñado y desarrollado con pasion
           </p>
         </div>
       </div>

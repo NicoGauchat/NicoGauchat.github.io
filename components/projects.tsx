@@ -4,12 +4,34 @@ import { useState, useCallback } from "react";
 import Image from "next/image";
 import { Github, ExternalLink, Lock, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
-const projects = [
+type Project = {
+  title: string;
+  status: string;
+  description: string;
+  images: string[];
+  stack: string[];
+  github: string | null;
+  demo: string | null;
+  isPrivate: boolean;
+};
+
+const projects: Project[] = [
+  {
+    title: "TrackIt-One",
+    status: "En preparacion",
+    description:
+      "Tarjeta lista para cargar las capturas y terminar de presentar TrackIt-One dentro del portfolio.",
+    images: [],
+    stack: [],
+    github: null,
+    demo: null,
+    isPrivate: false,
+  },
   {
     title: "Gym Node",
     status: "En desarrollo",
     description:
-      "Sistema de gestion para gimnasios diseñado para centralizar la operacion diaria en una sola plataforma. Permite administrar clientes, asistencias, cuotas, precios e informacion administrativa con una estructura clara, moderna y preparada para crecer.",
+      "Sistema de gestion para gimnasios disenado para centralizar la operacion diaria en una sola plataforma. Permite administrar clientes, asistencias, cuotas, precios e informacion administrativa con una estructura clara, moderna y preparada para crecer.",
     images: ["/foto/tp3.png", "/foto/tp2.png"],
     stack: ["Java", "Spring Boot", "PostgreSQL", "React", "Docker", "JWT"],
     github: null,
@@ -17,7 +39,7 @@ const projects = [
     isPrivate: true,
   },
   {
-    title: "Gestor de Rutinas Fitness",
+    title: "Gestor de Rutinas",
     status: "Completado",
     description:
       "Aplicacion Web Full Stack para gestion personalizada de entrenamientos. Backend en Go (Gin) con arquitectura limpia, autenticacion JWT, roles Admin/User y persistencia en MongoDB.",
@@ -28,24 +50,13 @@ const projects = [
     isPrivate: false,
   },
   {
-    title: "Sistema de Gestion Logistica",
-    status: "Completado",
+    title: "ExamGenIA",
+    status: "En preparacion",
     description:
-      "Trabajo Final Integrador. Aplicacion Full Stack para automatizar el ciclo comercial y logistico. Arquitectura en capas con algoritmo de optimizacion usando formula de Haversine para calculo de distancias.",
-    images: ["/foto/tp2.png"],
-    stack: ["C# .NET", "NUnit", "JSON", "Geolocation"],
-    github: "https://github.com/juanpoggi12/2024-Prog1-TI-Gauchat-Mallet-Poggi",
-    demo: null,
-    isPrivate: false,
-  },
-  {
-    title: "Snake Game Arcade",
-    status: "Completado",
-    description:
-      "Recreacion del clasico juego arcade Snake desarrollado en equipo. Implementacion de funcionalidades personalizadas, logica de juego optimizada y pruebas de funcionamiento completas.",
-    images: ["/foto/snakegame.jpg"],
-    stack: ["Go"],
-    github: "https://github.com/NicoGauchat/JuegoDeLaSerpiente",
+      "Tarjeta lista para cargar las capturas y completar la presentacion visual de ExamGenIA.",
+    images: [],
+    stack: [],
+    github: null,
     demo: null,
     isPrivate: false,
   },
@@ -68,7 +79,6 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
 
   return (
     <div className="relative h-72 sm:h-80 lg:h-96 overflow-hidden bg-[#0c1220] rounded-xl group/carousel">
-      {/* Main image */}
       <div className="relative w-full h-full">
         <Image
           src={images[currentIndex]}
@@ -79,7 +89,6 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
         />
       </div>
 
-      {/* Expand button */}
       <button
         className="absolute top-4 right-4 w-10 h-10 rounded-lg bg-background/80 backdrop-blur-sm border border-border flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300 hover:bg-background"
         aria-label="Expandir imagen"
@@ -87,7 +96,6 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
         <Maximize2 className="w-4 h-4 text-foreground" />
       </button>
 
-      {/* Navigation arrows - only show if more than 1 image */}
       {images.length > 1 && (
         <>
           <button
@@ -107,7 +115,6 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
         </>
       )}
 
-      {/* Dot indicators - only show if more than 1 image */}
       {images.length > 1 && (
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
           {images.map((_, index) => (
@@ -128,13 +135,34 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
   );
 }
 
+function EmptyProjectMedia({ title }: { title: string }) {
+  return (
+    <div className="relative h-72 sm:h-80 lg:h-96 overflow-hidden rounded-xl border border-dashed border-accent/30 bg-gradient-to-br from-card/80 via-card/50 to-muted/30">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(201,169,97,0.16),_transparent_55%)]" />
+      <div className="relative flex h-full items-center justify-center p-8 text-center">
+        <div className="max-w-md">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent/80">
+            Capturas pendientes
+          </p>
+          <h4 className="mt-4 font-serif text-3xl font-bold tracking-tight">
+            {title}
+          </h4>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            Esta tarjeta ya esta preparada para que agregues las fotos del proyecto cuando las tengas listas.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function StatusBadge({ status }: { status: string }) {
-  const isInDevelopment = status === "En desarrollo";
-  
+  const isHighlighted = status === "En desarrollo" || status === "En preparacion";
+
   return (
     <span
       className={`px-3 py-1 text-xs font-medium rounded-md border ${
-        isInDevelopment
+        isHighlighted
           ? "bg-accent/10 text-accent border-accent/30"
           : "bg-muted/50 text-muted-foreground border-border"
       }`}
@@ -147,11 +175,9 @@ function StatusBadge({ status }: { status: string }) {
 export function Projects() {
   return (
     <section id="projects" className="py-32 relative">
-      {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/5 to-transparent pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-12">
-        {/* Section header */}
         <div className="text-center mb-20">
           <p className="text-accent font-medium tracking-widest text-sm mb-4 uppercase">
             Portafolio
@@ -161,18 +187,16 @@ export function Projects() {
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Una seleccion de mis trabajos mas destacados, abarcando desde
-            Sistemas de Gestion Empresarial hasta Desarrollo Full Stack.
+            sistemas de gestion empresarial hasta desarrollo full stack.
           </p>
         </div>
 
-        {/* Projects list */}
         <div className="space-y-24">
           {projects.map((project) => (
             <article
               key={project.title}
               className="group"
             >
-              {/* Title with status badge */}
               <div className="flex items-center gap-4 mb-8">
                 <h3 className="text-2xl lg:text-3xl font-bold tracking-tight">
                   {project.title}
@@ -180,63 +204,66 @@ export function Projects() {
                 <StatusBadge status={project.status} />
               </div>
 
-              {/* Image carousel */}
-              <ImageCarousel images={project.images} title={project.title} />
+              {project.images.length > 0 ? (
+                <ImageCarousel images={project.images} title={project.title} />
+              ) : (
+                <EmptyProjectMedia title={project.title} />
+              )}
 
-              {/* Content below carousel */}
               <div className="mt-8 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-                {/* Description */}
                 <p className="text-muted-foreground leading-relaxed max-w-2xl">
                   {project.description}
                 </p>
 
-                {/* Stack badges */}
-                <div className="flex flex-wrap gap-2 lg:justify-end lg:max-w-md">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-4 py-1.5 text-sm font-medium bg-transparent text-foreground rounded-full border border-border hover:border-accent/50 transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Links */}
-              <div className="mt-6 flex items-center gap-6">
-                {project.isPrivate ? (
-                  <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-                    <Lock className="w-4 h-4" />
-                    Codigo Privado (SaaS)
-                  </span>
-                ) : (
-                  <>
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-accent"
+                {project.stack.length > 0 && (
+                  <div className="flex flex-wrap gap-2 lg:justify-end lg:max-w-md">
+                    {project.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-4 py-1.5 text-sm font-medium bg-transparent text-foreground rounded-full border border-border hover:border-accent/50 transition-colors"
                       >
-                        <Github className="w-4 h-4" />
-                        Ver Codigo
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-accent"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Ver Demo
-                      </a>
-                    )}
-                  </>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 )}
               </div>
+
+              {(project.isPrivate || project.github || project.demo) && (
+                <div className="mt-6 flex items-center gap-6">
+                  {project.isPrivate ? (
+                    <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                      <Lock className="w-4 h-4" />
+                      Codigo Privado (SaaS)
+                    </span>
+                  ) : (
+                    <>
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-accent"
+                        >
+                          <Github className="w-4 h-4" />
+                          Ver Codigo
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-accent"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Ver Demo
+                        </a>
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
             </article>
           ))}
         </div>

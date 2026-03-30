@@ -7,13 +7,13 @@ const skills = [
     icon: Server,
     title: "Desarrollo Backend",
     description:
-      "Construccion de logica de servidor eficiente utilizando C# (.NET), Java y Go. Implementacion de patrones de diseno y arquitecturas limpias.",
+      "Construccion de logica de servidor eficiente utilizando C# (.NET), Java y Go. Implementacion de patrones de diseño y arquitecturas limpias.",
   },
   {
     icon: Network,
     title: "APIs RESTful",
     description:
-      "Diseno y desarrollo de APIs escalables para integrar sistemas. Experiencia conectando servicios y asegurando la integridad de los datos.",
+      "Diseño y desarrollo de APIs escalables para integrar sistemas. Experiencia conectando servicios y asegurando la integridad de los datos.",
   },
   {
     icon: Database,

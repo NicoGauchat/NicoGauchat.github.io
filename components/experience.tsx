@@ -14,7 +14,7 @@ const experiences = [
     icon: "graduation",
   },
   {
-    period: "2024 - Actualidad",
+    period: "2025 - Actualidad",
     title: "Desarrollador Full Stack",
     company: "Proyecto SaaS - Sistema de Administracion",
     description:

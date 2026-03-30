@@ -1,8 +1,16 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { Github, ExternalLink, Lock, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Github,
+  Lock,
+  Maximize2,
+  X,
+} from "lucide-react";
 
 type Project = {
   title: string;
@@ -76,8 +84,227 @@ const projects: Project[] = [
   },
 ];
 
+function getWrappedIndex(index: number, total: number) {
+  return (index + total) % total;
+}
+
+function CarouselArrow({
+  direction,
+  onClick,
+  className,
+}: {
+  direction: "left" | "right";
+  onClick: () => void;
+  className?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/12 bg-[#09101d]/80 text-white shadow-[0_12px_30px_rgba(0,0,0,0.45)] backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-accent/50 hover:text-accent ${className ?? ""}`}
+    >
+      {direction === "left" ? (
+        <ChevronLeft className="h-5 w-5" />
+      ) : (
+        <ChevronRight className="h-5 w-5" />
+      )}
+    </button>
+  );
+}
+
+function SlideFrame({
+  image,
+  title,
+  isActive,
+  onClick,
+  onExpand,
+}: {
+  image: string;
+  title: string;
+  isActive: boolean;
+  onClick?: () => void;
+  onExpand?: () => void;
+}) {
+  return (
+    <div
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={(event) => {
+        if (!onClick) {
+          return;
+        }
+
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onClick();
+        }
+      }}
+      className={`group/slide relative h-full w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#0d1423] text-left shadow-[0_26px_90px_rgba(0,0,0,0.45)] transition-all duration-500 ${isActive ? "cursor-default" : "cursor-pointer"}`}
+    >
+      <div className="flex items-center justify-between border-b border-white/6 bg-white/[0.04] px-4 py-3">
+        <div className="flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-accent/80" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+        </div>
+        <p className="text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+          {title}
+        </p>
+        <div className="flex items-center gap-2">
+          {isActive && onExpand ? (
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                onExpand();
+              }}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#08101d]/80 text-white transition-all duration-300 hover:border-accent/50 hover:text-accent"
+              aria-label={`Abrir ${title} en pantalla completa`}
+            >
+              <Maximize2 className="h-4 w-4" />
+            </button>
+          ) : (
+            <span className="h-6 w-6 rounded-full border border-white/10 bg-white/[0.02]" />
+          )}
+        </div>
+      </div>
+
+      <div className="relative h-[calc(100%-61px)] bg-[radial-gradient(circle_at_top,_rgba(201,169,97,0.14),_transparent_45%)]">
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,13,24,0.1),rgba(8,13,24,0.4))]" />
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-contain p-3 md:p-4"
+          sizes="(max-width: 768px) 90vw, 70vw"
+        />
+      </div>
+    </div>
+  );
+}
+
+function FullscreenCarousel({
+  title,
+  images,
+  currentIndex,
+  onClose,
+  onNext,
+  onPrevious,
+  onSelect,
+}: {
+  title: string;
+  images: string[];
+  currentIndex: number;
+  onClose: () => void;
+  onNext: () => void;
+  onPrevious: () => void;
+  onSelect: (index: number) => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 bg-[#030712]/95 backdrop-blur-md">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(201,169,97,0.14),_transparent_40%)]" />
+
+      <div className="relative flex h-full flex-col px-4 py-4 sm:px-8 sm:py-6">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.32em] text-accent/80">
+              Pantalla completa
+            </p>
+            <h3 className="mt-2 font-serif text-2xl font-bold tracking-tight sm:text-3xl">
+              {title}
+            </h3>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-muted-foreground">
+              {currentIndex + 1} / {images.length}
+            </span>
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/12 bg-[#09101d]/80 text-white transition-all duration-300 hover:border-accent/50 hover:text-accent"
+              aria-label="Cerrar pantalla completa"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+
+        <div className="relative mt-6 flex flex-1 items-center justify-center">
+          {images.length > 1 && (
+            <>
+              <CarouselArrow
+                direction="left"
+                onClick={onPrevious}
+                className="absolute left-0 z-10 sm:left-4"
+              />
+              <CarouselArrow
+                direction="right"
+                onClick={onNext}
+                className="absolute right-0 z-10 sm:right-4"
+              />
+            </>
+          )}
+
+          <div className="relative h-full max-h-[72vh] w-full max-w-7xl overflow-hidden rounded-[32px] border border-white/10 bg-[#0d1423] shadow-[0_40px_120px_rgba(0,0,0,0.55)]">
+            <div className="flex items-center justify-between border-b border-white/6 bg-white/[0.04] px-5 py-4">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-accent/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+              </div>
+              <p className="text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+                {title}
+              </p>
+              <span className="h-6 w-6 rounded-full border border-white/10 bg-white/[0.02]" />
+            </div>
+
+            <div className="relative h-[calc(100%-65px)]">
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,13,24,0.14),rgba(8,13,24,0.38))]" />
+              <Image
+                src={images[currentIndex]}
+                alt={`${title} - imagen ${currentIndex + 1}`}
+                fill
+                className="object-contain p-4 sm:p-6"
+                sizes="100vw"
+              />
+            </div>
+          </div>
+        </div>
+
+        {images.length > 1 && (
+          <div className="mx-auto mt-6 flex w-full max-w-5xl gap-3 overflow-x-auto pb-2">
+            {images.map((image, index) => (
+              <button
+                type="button"
+                key={image}
+                onClick={() => onSelect(index)}
+                className={`relative h-20 min-w-32 overflow-hidden rounded-2xl border transition-all duration-300 ${
+                  index === currentIndex
+                    ? "border-accent shadow-[0_0_0_1px_rgba(201,169,97,0.45)]"
+                    : "border-white/10 opacity-60 hover:opacity-100"
+                }`}
+              >
+                <Image
+                  src={image}
+                  alt={`${title} miniatura ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="160px"
+                />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function ImageCarousel({ images, title }: { images: string[]; title: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -91,61 +318,146 @@ function ImageCarousel({ images, title }: { images: string[]; title: string }) {
     setCurrentIndex(index);
   }, []);
 
+  useEffect(() => {
+    if (!isFullscreenOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsFullscreenOpen(false);
+      }
+
+      if (event.key === "ArrowLeft") {
+        goToPrevious();
+      }
+
+      if (event.key === "ArrowRight") {
+        goToNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [goToNext, goToPrevious, isFullscreenOpen]);
+
+  const previousIndex = getWrappedIndex(currentIndex - 1, images.length);
+  const nextIndex = getWrappedIndex(currentIndex + 1, images.length);
+  const showSideSlides = images.length > 2;
+
   return (
-    <div className="relative h-72 sm:h-80 lg:h-96 overflow-hidden bg-[#0c1220] rounded-xl group/carousel">
-      <div className="relative w-full h-full">
-        <Image
-          src={images[currentIndex]}
-          alt={`${title} - imagen ${currentIndex + 1}`}
-          fill
-          className="object-contain p-4"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+    <>
+      <div className="relative overflow-hidden rounded-[36px] border border-white/6 bg-[linear-gradient(180deg,#09101d_0%,#070d18_100%)] px-4 py-6 shadow-[0_40px_120px_rgba(0,0,0,0.4)] sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(201,169,97,0.12),_transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.03),transparent)]" />
+
+        <div className="relative h-[320px] sm:h-[420px] lg:h-[560px]">
+          {showSideSlides && (
+            <>
+              <div
+                className="absolute left-1/2 top-1/2 hidden aspect-[16/10] md:block"
+                style={{
+                  width: "min(38%, 420px)",
+                  transform: "translate(calc(-50% - min(31vw, 340px)), -50%) scale(0.84)",
+                  opacity: 0.22,
+                  filter: "blur(1px)",
+                }}
+              >
+                <SlideFrame
+                  image={images[previousIndex]}
+                  title={title}
+                  isActive={false}
+                  onClick={() => goToSlide(previousIndex)}
+                />
+              </div>
+
+              <div
+                className="absolute left-1/2 top-1/2 hidden aspect-[16/10] md:block"
+                style={{
+                  width: "min(38%, 420px)",
+                  transform: "translate(calc(-50% + min(31vw, 340px)), -50%) scale(0.84)",
+                  opacity: 0.22,
+                  filter: "blur(1px)",
+                }}
+              >
+                <SlideFrame
+                  image={images[nextIndex]}
+                  title={title}
+                  isActive={false}
+                  onClick={() => goToSlide(nextIndex)}
+                />
+              </div>
+            </>
+          )}
+
+          <div
+            className="absolute left-1/2 top-1/2 aspect-[16/10]"
+            style={{
+              width: "min(84%, 980px)",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <SlideFrame
+              image={images[currentIndex]}
+              title={title}
+              isActive
+              onExpand={() => setIsFullscreenOpen(true)}
+            />
+          </div>
+
+          {images.length > 1 && (
+            <>
+              <CarouselArrow
+                direction="left"
+                onClick={goToPrevious}
+                className="absolute left-2 top-1/2 -translate-y-1/2 md:left-[14%]"
+              />
+              <CarouselArrow
+                direction="right"
+                onClick={goToNext}
+                className="absolute right-2 top-1/2 -translate-y-1/2 md:right-[14%]"
+              />
+            </>
+          )}
+        </div>
+
+        {images.length > 1 && (
+          <div className="relative mt-8 flex items-center justify-center gap-2">
+            {images.map((image, index) => (
+              <button
+                type="button"
+                key={image}
+                onClick={() => goToSlide(index)}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? "w-8 bg-accent shadow-[0_0_18px_rgba(201,169,97,0.45)]"
+                    : "w-2.5 bg-white/18 hover:bg-white/35"
+                }`}
+                aria-label={`Ir a imagen ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
-      <button
-        className="absolute top-4 right-4 w-10 h-10 rounded-lg bg-background/80 backdrop-blur-sm border border-border flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300 hover:bg-background"
-        aria-label="Expandir imagen"
-      >
-        <Maximize2 className="w-4 h-4 text-foreground" />
-      </button>
-
-      {images.length > 1 && (
-        <>
-          <button
-            onClick={goToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-24 bg-background/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-background/80 rounded-r-lg"
-            aria-label="Imagen anterior"
-          >
-            <ChevronLeft className="w-6 h-6 text-foreground" />
-          </button>
-          <button
-            onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-24 bg-background/60 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-background/80 rounded-l-lg"
-            aria-label="Imagen siguiente"
-          >
-            <ChevronRight className="w-6 h-6 text-foreground" />
-          </button>
-        </>
+      {isFullscreenOpen && (
+        <FullscreenCarousel
+          title={title}
+          images={images}
+          currentIndex={currentIndex}
+          onClose={() => setIsFullscreenOpen(false)}
+          onNext={goToNext}
+          onPrevious={goToPrevious}
+          onSelect={goToSlide}
+        />
       )}
-
-      {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`transition-all duration-300 rounded-full ${
-                index === currentIndex
-                  ? "w-6 h-2 bg-accent"
-                  : "w-2 h-2 bg-foreground/40 hover:bg-foreground/60"
-              }`}
-              aria-label={`Ir a imagen ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+    </>
   );
 }
 
